@@ -1,0 +1,14 @@
+{
+  "name": "sharathtest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Myjs.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.7.2"
+  }
+}
