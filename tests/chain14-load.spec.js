@@ -102,6 +102,5 @@ test('open app 20 times in parallel, wait for Oslo button and measure load/netwo
       r.failedDetails.forEach((f) => console.log(`  failed: ${f.url} -> ${f.failure}`));
     }
   });
-
   expect(failures.length).toBe(0);
 });
