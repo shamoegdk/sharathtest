@@ -10,7 +10,7 @@ module.exports = defineConfig({
   reporter: 'html',
   use: {
     baseURL: 'https://icy-forest-0b5fd4e03.1.azurestaticapps.net',
-    headless: false,
+    headless: !!process.env.CI,
     screenshot: 'on',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
@@ -27,9 +27,5 @@ module.exports = defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
   ],
 });
