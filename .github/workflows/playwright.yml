@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
-  schedule:
-    - cron: '0 8 * * 1-5'   # Mon-Fri at 8 AM UTC
 
 jobs:
   test:
@@ -33,6 +31,7 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
         env:
+          CI: true
           TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
           TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
