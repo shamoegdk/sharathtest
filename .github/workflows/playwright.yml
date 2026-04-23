@@ -6,8 +6,7 @@ on:
   pull_request:
     branches: [ main, master ]
   workflow_dispatch:
-  schedule:
-    - cron: '0 8 * * 1-5'   # Mon-Fri at 8 AM UTC
+
 
 jobs:
   test:
