@@ -13,6 +13,7 @@ class LoginPage {
     this.passwordInput = page.getByRole('textbox', { name: 'Password' });
     this.loginButton = page.getByRole('button', { name: 'Login' });
     this.successMessage = page.getByText('Login successful', { exact: true });
+    this.errorMessage = page.getByText('Incorrect login information', { exact: false });
   }
 
   async goto() {
