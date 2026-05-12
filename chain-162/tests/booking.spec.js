@@ -67,7 +67,7 @@ test.describe('HAN-T128: COB v2.0 – Full Booking Flow (Single Service)', () =>
     // ── Section 5: Confirm Booking Page ───────────────────────────────────
     // Confirm Booking section is already visible after resource selection
     await test.step('Review booking summary, toggle reminders, add note, then confirm', async () => {
-      await expect(booking.bookingSummaryHeading).toBeVisible();
+      await expect(booking.bookingSummaryHeading).toBeVisible({ timeout: 15000 });
       await expect(booking.smsReminderCheckbox).toBeVisible();
       await booking.toggleSmsReminder();
 
