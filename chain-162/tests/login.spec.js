@@ -21,8 +21,7 @@ test.describe('Login', () => {
     const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.login('wrong@example.com', 'wrongpassword');
-    // Verify we did NOT see the success message
-    await expect(loginPage.successMessage).not.toBeVisible();
+    await expect(loginPage.errorMessage).toBeVisible();
   });
 
 });
