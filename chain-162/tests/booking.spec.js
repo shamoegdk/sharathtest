@@ -8,6 +8,10 @@ const { BookingPage } = require('./pages/BookingPage');
 const VALID_EMAIL    = process.env.BOOKING_EMAIL    || 'testsharathm@gmail.com';
 const VALID_PASSWORD = process.env.BOOKING_PASSWORD || 'Auto@12345';
 
+const SERVICE_GROUP    = process.env.BOOKING_SERVICE_GROUP    || 'Test Service Group';
+const SERVICE_CATEGORY = process.env.BOOKING_SERVICE_CATEGORY || 'Styling';
+const SERVICE_NAME     = process.env.BOOKING_SERVICE_NAME     || 'treat777';
+
 test.describe('HAN-T128: COB v2.0 – Full Booking Flow (Single Service)', () => {
 
   test('Complete booking flow: area → salon → service → time → login → confirm', async ({ page }) => {
@@ -33,18 +37,18 @@ test.describe('HAN-T128: COB v2.0 – Full Booking Flow (Single Service)', () =>
     });
 
     // ── Section 3: Resource Mode & Service Selection ───────────────────────
-    await test.step('Select First Available mode and treat777 from Test Service Group', async () => {
+    await test.step(`Select First Available mode and ${SERVICE_NAME} from ${SERVICE_GROUP}`, async () => {
       await expect(booking.firstAvailableCard).toBeVisible();
       await booking.selectFirstAvailable();
 
-      await expect(page.getByRole('img', { name: 'Test Service Group' })).toBeVisible();
-      await booking.expandServiceGroup('Test Service Group');
+      await expect(page.getByRole('img', { name: SERVICE_GROUP })).toBeVisible();
+      await booking.expandServiceGroup(SERVICE_GROUP);
 
-      await expect(page.getByText('Styling', { exact: true }).first()).toBeVisible();
-      await booking.selectServiceCategory('Styling');
+      await expect(page.getByText(SERVICE_CATEGORY, { exact: true }).first()).toBeVisible();
+      await booking.selectServiceCategory(SERVICE_CATEGORY);
 
-      await expect(page.getByText('treat777').first()).toBeVisible();
-      await booking.selectService('treat777');
+      await expect(page.getByText(SERVICE_NAME).first()).toBeVisible();
+      await booking.selectService(SERVICE_NAME);
 
       await expect(booking.selectTreatmentButton).toBeVisible();
       await booking.confirmServiceSelection();
@@ -107,7 +111,7 @@ test.describe('HAN-T128: COB v2.0 – Full Booking Flow (Single Service)', () =>
 
       // Confirmation page details
       await expect(booking.confirmationSalonName).toBeVisible();
-      await expect(booking.confirmationService).toBeVisible();
+      await expect(booking.confirmationService(SERVICE_NAME)).toBeVisible();
       await expect(booking.confirmationDuration).toBeVisible();
       await expect(booking.confirmationPrice).toBeVisible();
 

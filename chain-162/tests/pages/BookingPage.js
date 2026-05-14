@@ -51,9 +51,13 @@ class BookingPage {
 
     // Booking confirmation page details (dynamic — asserted after booking)
     this.confirmationSalonName = page.getByText('SALON MANGALORE INDIA1');
-    this.confirmationService   = page.getByText('treat777');
     this.confirmationDuration  = page.getByText(/\d+\s*min/i);
     this.confirmationPrice     = page.getByText(/\d+\s*kr/i);
+  }
+
+  /** Returns a locator for the service name on the confirmation page */
+  confirmationService(serviceName) {
+    return this.page.getByText(serviceName);
   }
 
   async goto() {
@@ -79,8 +83,8 @@ class BookingPage {
 
   /** Click the service group image then heading to expand it */
   async expandServiceGroup(groupName) {
-    await this.page.getByRole('img', { name: groupName }).click();
-    await this.page.getByRole('heading', { name: groupName }).click();
+    await this.page.getByRole('img', { name: groupName }).click({ force: true });
+    await this.page.getByRole('heading', { name: groupName }).click({ force: true });
   }
 
   /** Click a category/sub-group within a service group */
